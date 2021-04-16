@@ -78,9 +78,9 @@ const Castform = () => {
     </div>
   );
 
-  const SkillItem = x => (
-    <li key={x.id} className="text-sm my-2">
-      {x.skill}
+  const SkillItem = ({ id, skill }) => (
+    <li key={id} className="text-sm my-2">
+      {skill}
     </li>
   );
 
@@ -93,9 +93,9 @@ const Castform = () => {
       </div>
     );
 
-  const HobbyItem = x => (
-    <li key={x.id} className="text-sm my-2">
-      {x.hobby}
+  const HobbyItem = ({ id, hobby }) => (
+    <li key={id} className="text-sm my-2">
+      {hobby}
     </li>
   );
 
@@ -111,18 +111,18 @@ const Castform = () => {
   const Objective = () =>
     data.objective && data.objective.enable && <ReactMarkdown className="m-5 text-sm" source={data.objective.body} />;
 
-  const WorkItem = x => (
-    <div key={x.id} className="my-3 px-5">
+  const WorkItem = ({ id, title, role, start, end, description }) => (
+    <div key={id} className="my-3 px-5">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold">{x.title}</h6>
-          <p className="text-xs">{x.role}</p>
+          <h6 className="font-semibold">{title}</h6>
+          <p className="text-xs">{role}</p>
         </div>
         <span className="text-xs font-medium">
-          ({x.start} - {x.end})
+          ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm" source={description} />
     </div>
   );
 
@@ -135,13 +135,13 @@ const Castform = () => {
       </div>
     );
 
-  const ReferenceItem = x => (
-    <div key={x.id} className="flex flex-col">
-      <h6 className="text-sm font-medium">{x.name}</h6>
-      <span className="text-xs">{x.position}</span>
-      <span className="text-xs">{x.phone}</span>
-      <span className="text-xs">{x.email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const ReferenceItem = ({ id, name, position, phone, email, description }) => (
+    <div key={id} className="flex flex-col">
+      <h6 className="text-sm font-medium">{name}</h6>
+      <span className="text-xs">{position}</span>
+      <span className="text-xs">{phone}</span>
+      <span className="text-xs">{email}</span>
+      <ReactMarkdown className="mt-2 text-sm" source={description} />
     </div>
   );
 
@@ -156,14 +156,14 @@ const Castform = () => {
       </div>
     );
 
-  const LanguageItem = x => (
-    <div key={x.id} className="flex flex-col my-2">
+  const LanguageItem = ({ id, key, level, rating }) => (
+    <div key={id} className="flex flex-col my-2">
       <div className="flex justify-between items-center">
-        <h6 className="text-sm font-medium mb-1">{x.key}</h6>
-        {x.level !== '' && <div className="font-bold text-sm">{x.level}</div>}
+        <h6 className="text-sm font-medium mb-1">{key}</h6>
+        {level !== '' && <div className="font-bold text-sm">{level}</div>}
       </div>
 
-      {x.rating !== 0 && (
+      {rating !== 0 && (
         <div className="relative h-5">
           <div
             className="absolute mb-1 inset-0"
@@ -174,7 +174,7 @@ const Castform = () => {
           <div
             className="absolute mb-1 inset-0 rounded"
             style={{
-              width: `${x.rating * 20}%`,
+              width: `${rating * 20}%`,
               backgroundColor: 'rgba(0, 0, 0, 0.3)',
             }}
           />
@@ -194,21 +194,21 @@ const Castform = () => {
       </div>
     );
 
-  const EducationItem = x => (
-    <div key={x.id} className="my-3 px-5">
+  const EducationItem = ({ id, name, major, grade, start, end, description }) => (
+    <div key={id} className="my-3 px-5">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold">{x.name}</h6>
-          <p className="text-xs">{x.major}</p>
+          <h6 className="font-semibold">{name}</h6>
+          <p className="text-xs">{major}</p>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-sm font-bold">{x.grade}</span>
+          <span className="text-sm font-bold">{grade}</span>
           <span className="text-xs font-medium">
-            ({x.start} - {x.end})
+            ({start} - {end})
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm" source={description} />
     </div>
   );
 
@@ -221,11 +221,11 @@ const Castform = () => {
       </div>
     );
 
-  const AwardItem = x => (
-    <div key={x.id} className="my-3 px-5">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const AwardItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="my-3 px-5">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm" source={description} />
     </div>
   );
 
@@ -238,11 +238,11 @@ const Castform = () => {
       </div>
     );
 
-  const CertificationItem = x => (
-    <div key={x.id} className="my-3 px-5">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const CertificationItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="my-3 px-5">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm" source={description} />
     </div>
   );
 
@@ -255,10 +255,10 @@ const Castform = () => {
       </div>
     );
 
-  const ExtraItem = x => (
-    <div key={x.id} className="px-5 my-2">
-      <h6 className="text-xs font-bold">{x.key}</h6>
-      <div className="text-sm">{x.value}</div>
+  const ExtraItem = ({ id, key, value }) => (
+    <div key={id} className="px-5 my-2">
+      <h6 className="text-xs font-bold">{key}</h6>
+      <div className="text-sm">{value}</div>
     </div>
   );
 
