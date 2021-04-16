@@ -1,6 +1,6 @@
 /* eslint-disable new-cap */
 import html2canvas from 'html2canvas';
-import * as jsPDF from 'jspdf';
+import { jsPDF } from "jspdf";
 
 const move = (array, element, delta) => {
   const index = array.findIndex(item => item.id === element.id);
