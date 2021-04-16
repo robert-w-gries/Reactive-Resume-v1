@@ -181,7 +181,7 @@ const Celebi = () => {
     data.references.enable && (
       <div className="mb-6">
         <Heading title={data.references.heading} />
-        <div className="grid grid-cols-2 col-gap-4 row-gap-2">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           {data.references.items.filter(x => x.enable).map(ReferenceItem)}
         </div>
       </div>

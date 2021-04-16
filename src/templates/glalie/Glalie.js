@@ -57,7 +57,7 @@ const Glalie = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 row-gap-4">
+      <div className="grid grid-cols-1 gap-y-4">
         <ContactItem title="Phone Number" value={data.profile.phone} />
         <ContactItem title="Email Address" value={data.profile.email} />
         <ContactItem title="Website" value={data.profile.website} />
@@ -198,7 +198,7 @@ const Glalie = () => {
     data.hobbies.enable && (
       <div>
         <Heading title={data.hobbies.heading} />
-        <ul className="pt-2 grid grid-cols-2 row-gap-3 text-left">
+        <ul className="pt-2 grid grid-cols-2 gap-y-3 text-left">
           {data.hobbies.items.map(HobbyItem)}
         </ul>
       </div>
@@ -280,7 +280,7 @@ const Glalie = () => {
     >
       <div className="grid grid-cols-12">
         <div
-          className="h-full col-span-4 p-8 grid grid-cols-1 row-gap-4 text-center"
+          className="h-full col-span-4 p-8 grid grid-cols-1 gap-y-4 text-center"
           style={{ backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`, minHeight: '29.7cm' }}
         >
           <div className="grid grid-cols-1 gap-2">
@@ -295,7 +295,7 @@ const Glalie = () => {
           <Certifications />
         </div>
 
-        <div className="col-span-8 p-8 grid grid-cols-1 row-gap-4">
+        <div className="col-span-8 p-8 grid grid-cols-1 gap-y-4">
           <Work />
           <Education />
           <Skills />

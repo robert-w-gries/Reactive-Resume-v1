@@ -46,7 +46,7 @@ const ColorsTab = ({ theme, onChange }) => {
       <div className="uppercase tracking-wide text-gray-600 text-xs font-semibold mb-4">
         {t('colors.colorOptions')}
       </div>
-      <div className="mb-6 grid grid-cols-8 col-gap-2 row-gap-3">
+      <div className="mb-6 grid grid-cols-8 gap-x-2 gap-y-3">
         {colorOptions.map(color => (
           <div
             key={color}
