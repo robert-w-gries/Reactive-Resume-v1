@@ -87,7 +87,9 @@ const Glalie = () => {
     data.objective.enable && (
       <div>
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="text-sm text-justify" source={data.objective.body} />
+        <ReactMarkdown className="text-sm text-justify">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
@@ -101,7 +103,9 @@ const Glalie = () => {
           </p>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -123,7 +127,9 @@ const Glalie = () => {
           {start} - {end}
         </p>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -142,7 +148,9 @@ const Glalie = () => {
     <div key={id} className="mt-3 text-left">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -159,7 +167,9 @@ const Glalie = () => {
     <div key={id} className="mt-3 text-left">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -237,7 +247,9 @@ const Glalie = () => {
       <span className="text-xs">{position}</span>
       <span className="text-xs">{phone}</span>
       <span className="text-xs">{email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 

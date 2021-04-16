@@ -70,7 +70,9 @@ const Celebi = () => {
     data.objective.enable && (
       <div className="mb-6">
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="my-3 mr-10 text-sm" source={data.objective.body} />
+        <ReactMarkdown className="my-3 mr-10 text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
@@ -105,7 +107,9 @@ const Celebi = () => {
           {role} | {start} - {end}
         </p>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -125,7 +129,9 @@ const Celebi = () => {
       <div className="text-xs">
         {start} - {end}
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -172,7 +178,9 @@ const Celebi = () => {
       <span className="text-sm">{position}</span>
       <span className="text-sm">{phone}</span>
       <span className="text-sm">{email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -218,7 +226,9 @@ const Celebi = () => {
     <div key={id} className="my-2">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -235,7 +245,9 @@ const Celebi = () => {
     <div key={id} className="my-2">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 

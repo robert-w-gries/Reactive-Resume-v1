@@ -60,7 +60,9 @@ const Gengar = () => {
     data.objective.enable && (
       <div className="flex flex-col justify-center items-start mb-6">
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="text-sm" source={data.objective.body} />
+        <ReactMarkdown className="text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
@@ -116,7 +118,9 @@ const Gengar = () => {
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -133,7 +137,9 @@ const Gengar = () => {
     <div key={id} className="mb-3">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -150,7 +156,9 @@ const Gengar = () => {
     <div key={id} className="mb-3">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -169,7 +177,9 @@ const Gengar = () => {
       <span className="text-xs">{position}</span>
       <span className="text-xs">{phone}</span>
       <span className="text-xs">{email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -195,7 +205,9 @@ const Gengar = () => {
           ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 

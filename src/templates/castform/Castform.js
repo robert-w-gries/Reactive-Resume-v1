@@ -109,7 +109,11 @@ const Castform = () => {
     );
 
   const Objective = () =>
-    data.objective && data.objective.enable && <ReactMarkdown className="m-5 text-sm" source={data.objective.body} />;
+    data.objective && data.objective.enable && (
+      <ReactMarkdown className="m-5 text-sm">
+        {data.objective.body}
+      </ReactMarkdown>
+    );
 
   const WorkItem = ({ id, title, role, start, end, description }) => (
     <div key={id} className="my-3 px-5">
@@ -122,7 +126,9 @@ const Castform = () => {
           ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -141,7 +147,9 @@ const Castform = () => {
       <span className="text-xs">{position}</span>
       <span className="text-xs">{phone}</span>
       <span className="text-xs">{email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -208,7 +216,9 @@ const Castform = () => {
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -225,7 +235,9 @@ const Castform = () => {
     <div key={id} className="my-3 px-5">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -242,7 +254,9 @@ const Castform = () => {
     <div key={id} className="my-3 px-5">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 

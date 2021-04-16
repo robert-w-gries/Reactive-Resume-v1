@@ -32,7 +32,9 @@ const Pikachu = () => {
 
         <hr className="my-4 opacity-50" />
 
-        <ReactMarkdown className="text-sm" source={data.objective.body} />
+        <ReactMarkdown className="text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     </div>
   );
@@ -100,7 +102,9 @@ const Pikachu = () => {
       <span className="text-xs">{position}</span>
       <span className="text-xs">{phone}</span>
       <span className="text-xs">{email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -171,7 +175,9 @@ const Pikachu = () => {
           ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -202,7 +208,9 @@ const Pikachu = () => {
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -221,7 +229,9 @@ const Pikachu = () => {
     <div key={id} className="mb-2">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -240,7 +250,9 @@ const Pikachu = () => {
     <div key={id} className="mb-3">
       <h6 className="font-semibold">{title}</h6>
       <p className="text-xs">{subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
