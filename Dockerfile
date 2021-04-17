@@ -32,8 +32,9 @@ COPY --from=build /usr/src/app/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
 
-## export port 80
-EXPOSE 80
+## edit nginx conf file to use proper port
+ARG PORT=80
+RUN sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/nginx.conf
 
 ## run nginx server
 CMD ["nginx", "-g", "daemon off;"]
