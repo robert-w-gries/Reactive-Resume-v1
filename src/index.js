@@ -7,7 +7,7 @@ import './i18n';
 import './assets/tailwind/tailwind.css';
 import './index.css';
 
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import { AppProvider } from './context/AppContext';
 import { PageProvider } from './context/PageContext';
 import App from './components/App/App';
@@ -30,4 +30,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-serviceWorker.register();
+// TODO: Do we need service workers?
+// serviceWorker.register();

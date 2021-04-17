@@ -6,7 +6,6 @@ import { PanZoom } from 'react-easy-panzoom';
 import AppContext from '../../context/AppContext';
 import PageContext from '../../context/PageContext';
 
-import LeftSidebar from '../LeftSidebar/LeftSidebar';
 import RightSidebar from '../RightSidebar/RightSidebar';
 
 import templates from '../../templates';
@@ -36,10 +35,9 @@ const App = () => {
 
   return (
     <Suspense fallback="Loading...">
-      <div className="h-screen grid grid-cols-5 items-center">
-        <LeftSidebar />
-
-        <div className="relative z-10 h-screen overflow-hidden col-span-3 flex justify-center items-center">
+      <div className="h-screen items-center">
+        <div className="relative h-screen col-span-3 flex justify-center items-center overflow-hidden">
+          <RightSidebar />
           <PanZoom
             ref={panZoomRef}
             minZoom="0.4"
@@ -61,8 +59,6 @@ const App = () => {
         <div id="printPage" className="break-words">
           {templates.find(x => theme.layout.toLowerCase() === x.key).component()}
         </div>
-
-        <RightSidebar />
 
         <PanZoomAnimation />
         <PrintDialog />

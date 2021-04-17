@@ -3,3 +3,21 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer utilities {
+  .max-h-modal {
+    max-height: 800px;
+  }
+
+  .max-w-modal  {
+    max-width: 500px;
+  }
+
+  .dialog-overlay {
+    background-color: transparent !important;
+  }
+
+  .dialog-content {
+    padding: 0px !important;
+  }
+}

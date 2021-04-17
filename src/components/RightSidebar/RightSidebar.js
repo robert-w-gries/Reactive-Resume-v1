@@ -9,6 +9,7 @@ import FontsTab from './tabs/Fonts';
 import ActionsTab from './tabs/Actions';
 import AboutTab from './tabs/About';
 import SettingsTab from './tabs/Settings';
+import DraggableModal from '../modals/DraggableModal';
 
 const RightSidebar = () => {
   const { t } = useTranslation('rightSidebar');
@@ -43,7 +44,7 @@ const RightSidebar = () => {
       name: t('about.title'),
     },
   ];
-  const [currentTab, setCurrentTab] = useState(tabs[0].key);
+  const [currentTab, setCurrentTab] = useState('');
 
   const onChange = (key, value) => {
     dispatch({
@@ -55,6 +56,10 @@ const RightSidebar = () => {
     });
 
     dispatch({ type: 'save_data' });
+  };
+
+  const handleClick = (tabKey) => {
+    setCurrentTab(tabKey !== currentTab ? tabKey : '');
   };
 
   const renderTabs = () => {
@@ -79,10 +84,12 @@ const RightSidebar = () => {
   return (
     <div
       id="rightSidebar"
-      className="animated slideInRight z-10 py-6 h-screen bg-white col-span-1 shadow-2xl overflow-y-scroll"
+      className="fixed p-2 left-0 w-36 h-full z-10 bg-white shadow-xl overflow-y-scroll"
     >
-      <TabBar tabs={tabs} currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      <div className="px-6">{renderTabs()}</div>
+      <TabBar tabs={tabs} selectedTab={currentTab} onSelect={handleClick} />
+      <DraggableModal isOpen={Boolean(currentTab)} onClose={() => setCurrentTab('')} ariaLabel="Modal">
+        {renderTabs()}
+      </DraggableModal>
     </div>
   );
 };

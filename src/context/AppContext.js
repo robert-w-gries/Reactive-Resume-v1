@@ -11,9 +11,9 @@ const initialState = {
     profile: {
       heading: 'Profile',
       photo: '',
-      firstName: '',
-      lastName: '',
-      subtitle: '',
+      firstName: 'Jane',
+      lastName: 'Doe',
+      subtitle: 'Professional Employee',
       address: {
         line1: '',
         line2: '',
@@ -75,7 +75,7 @@ const initialState = {
     },
   },
   theme: {
-    layout: 'Onyx',
+    layout: 'Pikachu',
     font: {
       family: '',
     },
@@ -139,7 +139,7 @@ const reducer = (state, { type, payload }) => {
     case 'reset':
       return initialState;
     default:
-      return newState;
+      return newState || initialState;
   }
 };
 
