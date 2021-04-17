@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Counter = ({ label, value, onDecrement, onIncrement, className }) => {
-  return (
+const Counter = ({ label, value, onDecrement, onIncrement, className }) => (
     <div className={className}>
       <label className="uppercase tracking-wide text-gray-600 text-xs font-semibold mb-2">
         {label}
@@ -30,6 +29,5 @@ const Counter = ({ label, value, onDecrement, onIncrement, className }) => {
       </div>
     </div>
   );
-};
 
 export default Counter;
