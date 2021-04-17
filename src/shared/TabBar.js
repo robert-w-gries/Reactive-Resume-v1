@@ -29,14 +29,14 @@ const TabBar = ({ tabs, currentTab, setCurrentTab }) => {
         {tabs.map((tab) =>
           currentTab === tab.key ? (
             <li key={tab.key} className="mx-1 list-none">
-              <div className="whitespace-no-wrap bg-gray-700 text-white rounded-md text-sm py-2 px-6 font-medium">
+              <div className="whitespace-nowrap bg-gray-700 text-white rounded-md text-sm py-2 px-6 font-medium">
                 {tab.name || 'Tab'}
               </div>
             </li>
           ) : (
             <li key={tab.key} className="mx-1 list-none">
               <div
-                className="bg-white whitespace-no-wrap rounded-md cursor-pointer text-sm py-2 px-6 font-medium hover:bg-gray-200"
+                className="bg-white whitespace-nowrap rounded-md cursor-pointer text-sm py-2 px-6 font-medium hover:bg-gray-200"
                 onClick={() => setCurrentTab(tab.key)}
               >
                 {tab.name || 'Tab'}

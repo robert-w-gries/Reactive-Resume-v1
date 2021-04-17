@@ -70,7 +70,9 @@ const Celebi = () => {
     data.objective.enable && (
       <div className="mb-6">
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="my-3 mr-10 text-sm" source={data.objective.body} />
+        <ReactMarkdown className="my-3 mr-10 text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
@@ -97,15 +99,17 @@ const Celebi = () => {
     </div>
   );
 
-  const WorkItem = x => (
-    <div key={x.id} className="my-3 mr-10">
+  const WorkItem = ({ id, title, role, start, end, description }) => (
+    <div key={id} className="my-3 mr-10">
       <div>
-        <h6 className="font-semibold">{x.title}</h6>
+        <h6 className="font-semibold">{title}</h6>
         <p className="text-xs text-gray-800">
-          {x.role} | {x.start} - {x.end}
+          {role} | {start} - {end}
         </p>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -118,14 +122,16 @@ const Celebi = () => {
       </div>
     );
 
-  const EducationItem = x => (
-    <div key={x.id} className="my-3 mr-10">
-      <h6 className="font-semibold">{x.name}</h6>
-      <p className="text-xs">{x.major}</p>
+  const EducationItem = ({ id, name, major, start, end, description }) => (
+    <div key={id} className="my-3 mr-10">
+      <h6 className="font-semibold">{name}</h6>
+      <p className="text-xs">{major}</p>
       <div className="text-xs">
-        {x.start} - {x.end}
+        {start} - {end}
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -166,13 +172,15 @@ const Celebi = () => {
       </div>
     );
 
-  const ReferenceItem = x => (
-    <div key={x.id} className="flex flex-col">
-      <h6 className="text-sm font-semibold">{x.name}</h6>
-      <span className="text-sm">{x.position}</span>
-      <span className="text-sm">{x.phone}</span>
-      <span className="text-sm">{x.email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const ReferenceItem = ({ id, name, position, phone, email, description }) => (
+    <div key={id} className="flex flex-col">
+      <h6 className="text-sm font-semibold">{name}</h6>
+      <span className="text-sm">{position}</span>
+      <span className="text-sm">{phone}</span>
+      <span className="text-sm">{email}</span>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -181,20 +189,20 @@ const Celebi = () => {
     data.references.enable && (
       <div className="mb-6">
         <Heading title={data.references.heading} />
-        <div className="grid grid-cols-2 col-gap-4 row-gap-2">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           {data.references.items.filter(x => x.enable).map(ReferenceItem)}
         </div>
       </div>
     );
 
-  const LanguageItem = x => (
-    <div key={x.id} className="grid grid-cols-2 items-center py-2">
-      <h6 className="text-xs font-medium text-left">{x.key}</h6>
+  const LanguageItem = ({ id, key, level, rating }) => (
+    <div key={id} className="grid grid-cols-2 items-center py-2">
+      <h6 className="text-xs font-medium text-left">{key}</h6>
       <div className="flex">
-        {x.level && <div className="font-bold text-sm mr-2">{x.level}</div>}
-        {x.rating !== 0 && (
+        {level && <div className="font-bold text-sm mr-2">{level}</div>}
+        {rating !== 0 && (
           <div className="flex">
-            {Array.from(Array(x.rating)).map((_, i) => (
+            {Array.from(Array(rating)).map((_, i) => (
               <i key={i} className="material-icons text-lg" style={{ color: theme.colors.accent }}>
                 star
               </i>
@@ -214,11 +222,13 @@ const Celebi = () => {
       </div>
     );
 
-  const AwardItem = x => (
-    <div key={x.id} className="my-2">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const AwardItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="my-2">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -231,11 +241,13 @@ const Celebi = () => {
       </div>
     );
 
-  const CertificationItem = x => (
-    <div key={x.id} className="my-2">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const CertificationItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="my-2">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -248,10 +260,10 @@ const Celebi = () => {
       </div>
     );
 
-  const ExtraItem = x => (
-    <div key={x.id} className="my-3">
-      <h6 className="text-xs font-bold">{x.key}</h6>
-      <div className="text-sm">{x.value}</div>
+  const ExtraItem = ({ id, key, value }) => (
+    <div key={id} className="my-3">
+      <h6 className="text-xs font-bold">{key}</h6>
+      <div className="text-sm">{value}</div>
     </div>
   );
 

@@ -57,7 +57,7 @@ const Glalie = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 row-gap-4">
+      <div className="grid grid-cols-1 gap-y-4">
         <ContactItem title="Phone Number" value={data.profile.phone} />
         <ContactItem title="Email Address" value={data.profile.email} />
         <ContactItem title="Website" value={data.profile.website} />
@@ -87,21 +87,25 @@ const Glalie = () => {
     data.objective.enable && (
       <div>
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="text-sm text-justify" source={data.objective.body} />
+        <ReactMarkdown className="text-sm text-justify">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
-  const WorkItem = x => (
-    <div key={x.id} className="mt-3">
+  const WorkItem = ({ id, title, role, start, end, description }) => (
+    <div key={id} className="mt-3">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold text-sm">{x.title}</h6>
+          <h6 className="font-semibold text-sm">{title}</h6>
           <p className="text-xs opacity-75 font-medium">
-            {x.role} / {x.start} - {x.end}
+            {role} / {start} - {end}
           </p>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -114,16 +118,18 @@ const Glalie = () => {
       </div>
     );
 
-  const EducationItem = x => (
-    <div key={x.id} className="mt-3">
+  const EducationItem = ({ id, name, major, start, end, description }) => (
+    <div key={id} className="mt-3">
       <div>
-        <h6 className="font-semibold text-xs">{x.name}</h6>
-        <p className="text-xs opacity-75">{x.major}</p>
+        <h6 className="font-semibold text-xs">{name}</h6>
+        <p className="text-xs opacity-75">{major}</p>
         <p className="text-xs opacity-75">
-          {x.start} - {x.end}
+          {start} - {end}
         </p>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -138,11 +144,13 @@ const Glalie = () => {
       </div>
     );
 
-  const AwardItem = x => (
-    <div key={x.id} className="mt-3 text-left">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const AwardItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mt-3 text-left">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -155,11 +163,13 @@ const Glalie = () => {
       </div>
     );
 
-  const CertificationItem = x => (
-    <div key={x.id} className="mt-3 text-left">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const CertificationItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mt-3 text-left">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -172,9 +182,9 @@ const Glalie = () => {
       </div>
     );
 
-  const SkillItem = x => (
-    <li key={x.id} className="text-xs font-medium">
-      {x.skill}
+  const SkillItem = ({ id, skill }) => (
+    <li key={id} className="text-xs font-medium">
+      {skill}
     </li>
   );
 
@@ -187,9 +197,9 @@ const Glalie = () => {
       </div>
     );
 
-  const HobbyItem = x => (
-    <li key={x.id} className="text-xs font-medium">
-      {x.hobby}
+  const HobbyItem = ({ id, hobby }) => (
+    <li key={id} className="text-xs font-medium">
+      {hobby}
     </li>
   );
 
@@ -198,20 +208,20 @@ const Glalie = () => {
     data.hobbies.enable && (
       <div>
         <Heading title={data.hobbies.heading} />
-        <ul className="pt-2 grid grid-cols-2 row-gap-3 text-left">
+        <ul className="pt-2 grid grid-cols-2 gap-y-3 text-left">
           {data.hobbies.items.map(HobbyItem)}
         </ul>
       </div>
     );
 
-  const LanguageItem = x => (
-    <div key={x.id} className="grid grid-cols-2 items-center py-2">
-      <h6 className="text-xs font-medium text-left">{x.key}</h6>
+  const LanguageItem = ({ id, key, level, rating }) => (
+    <div key={id} className="grid grid-cols-2 items-center py-2">
+      <h6 className="text-xs font-medium text-left">{key}</h6>
       <div className="flex">
-        {x.level && <div className="font-bold text-sm mr-2">{x.level}</div>}
-        {x.rating !== 0 && (
+        {level && <div className="font-bold text-sm mr-2">{level}</div>}
+        {rating !== 0 && (
           <div className="flex">
-            {Array.from(Array(x.rating)).map((_, i) => (
+            {Array.from(Array(rating)).map((_, i) => (
               <i key={i} className="material-icons text-lg" style={{ color: theme.colors.accent }}>
                 star
               </i>
@@ -231,13 +241,15 @@ const Glalie = () => {
       </div>
     );
 
-  const ReferenceItem = x => (
-    <div key={x.id} className="flex flex-col">
-      <h6 className="text-sm font-medium">{x.name}</h6>
-      <span className="text-xs">{x.position}</span>
-      <span className="text-xs">{x.phone}</span>
-      <span className="text-xs">{x.email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const ReferenceItem = ({ id, name, position, phone, email, description }) => (
+    <div key={id} className="flex flex-col">
+      <h6 className="text-sm font-medium">{name}</h6>
+      <span className="text-xs">{position}</span>
+      <span className="text-xs">{phone}</span>
+      <span className="text-xs">{email}</span>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -252,10 +264,10 @@ const Glalie = () => {
       </div>
     );
 
-  const ExtraItem = x => (
-    <tr key={x.id}>
-      <td className="border font-medium px-4 py-2 text-xs">{x.key}</td>
-      <td className="border px-4 py-2 text-xs">{x.value}</td>
+  const ExtraItem = ({ id, key, value }) => (
+    <tr key={id}>
+      <td className="border font-medium px-4 py-2 text-xs">{key}</td>
+      <td className="border px-4 py-2 text-xs">{value}</td>
     </tr>
   );
 
@@ -280,7 +292,7 @@ const Glalie = () => {
     >
       <div className="grid grid-cols-12">
         <div
-          className="h-full col-span-4 p-8 grid grid-cols-1 row-gap-4 text-center"
+          className="h-full col-span-4 p-8 grid grid-cols-1 gap-y-4 text-center"
           style={{ backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)`, minHeight: '29.7cm' }}
         >
           <div className="grid grid-cols-1 gap-2">
@@ -295,7 +307,7 @@ const Glalie = () => {
           <Certifications />
         </div>
 
-        <div className="col-span-8 p-8 grid grid-cols-1 row-gap-4">
+        <div className="col-span-8 p-8 grid grid-cols-1 gap-y-4">
           <Work />
           <Education />
           <Skills />

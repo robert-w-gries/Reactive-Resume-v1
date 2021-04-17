@@ -32,7 +32,9 @@ const Pikachu = () => {
 
         <hr className="my-4 opacity-50" />
 
-        <ReactMarkdown className="text-sm" source={data.objective.body} />
+        <ReactMarkdown className="text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     </div>
   );
@@ -58,12 +60,12 @@ const Pikachu = () => {
     </div>
   );
 
-  const SkillItem = x => (
+  const SkillItem = ({ id, skill }) => (
     <span
-      key={x.id}
+      key={id}
       className="leading-none rounded-lg text-sm font-medium bg-gray-300 py-3 my-1 px-4"
     >
-      {x.skill}
+      {skill}
     </span>
   );
 
@@ -76,12 +78,12 @@ const Pikachu = () => {
       </div>
     );
 
-  const HobbyItem = x => (
+  const HobbyItem = ({ id, hobby }) => (
     <span
-      key={x.id}
+      key={id}
       className="leading-none rounded-lg text-sm font-medium bg-gray-300 py-3 my-1 px-4"
     >
-      {x.hobby}
+      {hobby}
     </span>
   );
 
@@ -94,13 +96,15 @@ const Pikachu = () => {
       </div>
     );
 
-  const ReferenceItem = x => (
-    <div key={x.id} className="flex flex-col">
-      <h6 className="text-sm font-medium">{x.name}</h6>
-      <span className="text-xs">{x.position}</span>
-      <span className="text-xs">{x.phone}</span>
-      <span className="text-xs">{x.email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const ReferenceItem = ({ id, name, position, phone, email, description }) => (
+    <div key={id} className="flex flex-col">
+      <h6 className="text-sm font-medium">{name}</h6>
+      <span className="text-xs">{position}</span>
+      <span className="text-xs">{phone}</span>
+      <span className="text-xs">{email}</span>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -115,14 +119,14 @@ const Pikachu = () => {
       </div>
     );
 
-  const LanguageItem = x => (
-    <div key={x.id} className="grid grid-cols-2 items-center py-2">
-      <h6 className="text-sm font-medium">{x.key}</h6>
+  const LanguageItem = ({ id, key, level, rating }) => (
+    <div key={id} className="grid grid-cols-2 items-center py-2">
+      <h6 className="text-sm font-medium">{key}</h6>
       <div className="flex">
-        {x.level && <div className="font-bold text-sm mr-2">{x.level}</div>}
-        {x.rating !== 0 && (
+        {level && <div className="font-bold text-sm mr-2">{level}</div>}
+        {rating !== 0 && (
           <div className="flex">
-            {Array.from(Array(x.rating)).map((_, i) => (
+            {Array.from(Array(rating)).map((_, i) => (
               <i key={i} className="material-icons text-lg" style={{ color: theme.colors.accent }}>
                 star
               </i>
@@ -142,10 +146,10 @@ const Pikachu = () => {
       </div>
     );
 
-  const ExtraItem = x => (
-    <div key={x.id} className="text-sm my-1">
-      <h6 className="text-xs font-bold">{x.key}</h6>
-      <h6 className="">{x.value}</h6>
+  const ExtraItem = ({ id, key, value }) => (
+    <div key={id} className="text-sm my-1">
+      <h6 className="text-xs font-bold">{key}</h6>
+      <h6 className="">{value}</h6>
     </div>
   );
 
@@ -160,18 +164,20 @@ const Pikachu = () => {
       </div>
     );
 
-  const WorkItem = x => (
-    <div key={x.id} className="mb-3">
+  const WorkItem = ({ id, title, role, start, end, description }) => (
+    <div key={id} className="mb-3">
       <div className="flex justify-between items-center">
         <div>
-          <h6 className="font-semibold">{x.title}</h6>
-          <p className="text-xs">{x.role}</p>
+          <h6 className="font-semibold">{title}</h6>
+          <p className="text-xs">{role}</p>
         </div>
         <span className="text-xs font-medium">
-          ({x.start} - {x.end})
+          ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -186,23 +192,25 @@ const Pikachu = () => {
       </div>
     );
 
-  const EducationItem = x => (
-    <div key={x.id} className="mb-2">
+  const EducationItem = ({ id, name, major, grade, start, end, description }) => (
+    <div key={id} className="mb-2">
       <div className="flex justify-between items-center">
         <div>
-          <h6 className="font-semibold">{x.name}</h6>
-          <p className="text-xs">{x.major}</p>
+          <h6 className="font-semibold">{name}</h6>
+          <p className="text-xs">{major}</p>
         </div>
         <div className="flex flex-col text-right items-end">
           <span className="text-sm font-bold" style={{ color: theme.colors.accent }}>
-            {x.grade}
+            {grade}
           </span>
           <span className="text-xs font-medium">
-            ({x.start} - {x.end})
+            ({start} - {end})
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -217,11 +225,13 @@ const Pikachu = () => {
       </div>
     );
 
-  const AwardItem = x => (
-    <div key={x.id} className="mb-2">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const AwardItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mb-2">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -236,11 +246,13 @@ const Pikachu = () => {
       </div>
     );
 
-  const CertificationItem = x => (
-    <div key={x.id} className="mb-3">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const CertificationItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mb-3">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -264,7 +276,7 @@ const Pikachu = () => {
         color: theme.colors.primary,
       }}
     >
-      <div className="grid grid-cols-12 col-gap-6 row-gap-8">
+      <div className="grid grid-cols-12 gap-x-6 gap-y-8">
         <Photo />
 
         <div className={`${data.profile.photo !== '' ? 'col-span-8' : 'col-span-12'}`}>

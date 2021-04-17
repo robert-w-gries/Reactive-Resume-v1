@@ -52,7 +52,7 @@ const ActionsTab = ({ data, theme, dispatch }) => {
         />
         <a id="downloadAnchor" className="hidden" />
 
-        <div className="mt-4 grid grid-cols-2 col-gap-6">
+        <div className="mt-4 grid grid-cols-2 gap-x-6">
           <button
             type="button"
             onClick={() => fileInputRef.current.click()}

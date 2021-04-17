@@ -82,7 +82,7 @@ const Form = ({ item, onChange, identifier = '' }) => {
         onChange={v => onChange(`${identifier}grade`, v)}
       />
 
-      <div className="grid grid-cols-2 col-gap-4">
+      <div className="grid grid-cols-2 gap-x-4">
         <TextField
           className="mb-6"
           label={t('app:item.startDate.label')}

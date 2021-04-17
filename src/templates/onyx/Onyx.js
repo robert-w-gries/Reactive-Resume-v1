@@ -56,22 +56,26 @@ const Onyx = () => {
     data.objective.enable && (
       <div>
         <Heading title={data.objective.heading} />
-        <ReactMarkdown className="text-sm" source={data.objective.body} />
+        <ReactMarkdown className="text-sm">
+          {data.objective.body}
+        </ReactMarkdown>
       </div>
     );
 
-  const WorkItem = x => (
-    <div key={x.id} className="mt-3">
+  const WorkItem = ({ id, title, role, start, end, description }) => (
+    <div key={id} className="mt-3">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold">{x.title}</h6>
-          <p className="text-xs">{x.role}</p>
+          <h6 className="font-semibold">{title}</h6>
+          <p className="text-xs">{role}</p>
         </div>
         <span className="text-xs font-medium">
-          ({x.start} - {x.end})
+          ({start} - {end})
         </span>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -84,21 +88,23 @@ const Onyx = () => {
       </div>
     );
 
-  const EducationItem = x => (
-    <div key={x.id} className="mt-3">
+  const EducationItem = ({ id, name, major, grade, start, end, description }) => (
+    <div key={id} className="mt-3">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold">{x.name}</h6>
-          <p className="text-xs">{x.major}</p>
+          <h6 className="font-semibold">{name}</h6>
+          <p className="text-xs">{major}</p>
         </div>
         <div className="flex flex-col items-end">
-          <span className="text-sm font-bold">{x.grade}</span>
+          <span className="text-sm font-bold">{grade}</span>
           <span className="text-xs font-medium">
-            ({x.start} - {x.end})
+            ({start} - {end})
           </span>
         </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -111,11 +117,13 @@ const Onyx = () => {
       </div>
     );
 
-  const AwardItem = x => (
-    <div key={x.id} className="mt-3">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const AwardItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mt-3">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -128,11 +136,13 @@ const Onyx = () => {
       </div>
     );
 
-  const CertificationItem = x => (
-    <div key={x.id} className="mt-3">
-      <h6 className="font-semibold">{x.title}</h6>
-      <p className="text-xs">{x.subtitle}</p>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const CertificationItem = ({ id, title, subtitle, description }) => (
+    <div key={id} className="mt-3">
+      <h6 className="font-semibold">{title}</h6>
+      <p className="text-xs">{subtitle}</p>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -145,16 +155,16 @@ const Onyx = () => {
       </div>
     );
 
-  const HobbyItem = x => (
+  const HobbyItem = ({ id, hobby }) => (
     <span
-      key={x.id}
+      key={id}
       className="text-xs rounded-full px-3 py-1 font-medium my-2 mr-2"
       style={{
         backgroundColor: theme.colors.primary,
         color: theme.colors.background,
       }}
     >
-      {x.hobby}
+      {hobby}
     </span>
   );
 
@@ -167,16 +177,16 @@ const Onyx = () => {
       </div>
     );
 
-  const SkillItem = x => (
+  const SkillItem = ({ id, skill }) => (
     <span
-      key={x.id}
+      key={id}
       className="text-xs rounded-full px-3 py-1 font-medium my-2 mr-2"
       style={{
         backgroundColor: theme.colors.primary,
         color: theme.colors.background,
       }}
     >
-      {x.skill}
+      {skill}
     </span>
   );
 
@@ -189,14 +199,14 @@ const Onyx = () => {
       </div>
     );
 
-  const LanguageItem = x => (
-    <div key={x.id} className="grid grid-cols-2 items-center py-2">
-      <h6 className="text-sm font-medium">{x.key}</h6>
+  const LanguageItem = ({ id, key, level, rating }) => (
+    <div key={id} className="grid grid-cols-2 items-center py-2">
+      <h6 className="text-sm font-medium">{key}</h6>
       <div className="flex">
-        {x.level && <div className="font-bold text-sm mr-2">{x.level}</div>}
-        {x.rating !== 0 && (
+        {level && <div className="font-bold text-sm mr-2">{level}</div>}
+        {rating !== 0 && (
           <div className="flex">
-            {Array.from(Array(x.rating)).map((_, i) => (
+            {Array.from(Array(rating)).map((_, i) => (
               <i key={i} className="material-icons text-lg" style={{ color: theme.colors.accent }}>
                 star
               </i>
@@ -216,13 +226,15 @@ const Onyx = () => {
       </div>
     );
 
-  const ReferenceItem = x => (
-    <div key={x.id} className="flex flex-col">
-      <h6 className="text-sm font-medium">{x.name}</h6>
-      <span className="text-xs">{x.position}</span>
-      <span className="text-xs">{x.phone}</span>
-      <span className="text-xs">{x.email}</span>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+  const ReferenceItem = ({ id, name, position, phone, email, description }) => (
+    <div key={id} className="flex flex-col">
+      <h6 className="text-sm font-medium">{name}</h6>
+      <span className="text-xs">{position}</span>
+      <span className="text-xs">{phone}</span>
+      <span className="text-xs">{email}</span>
+      <ReactMarkdown className="mt-2 text-sm">
+        {description}
+      </ReactMarkdown>
     </div>
   );
 
@@ -237,10 +249,10 @@ const Onyx = () => {
       </div>
     );
 
-  const ExtraItem = x => (
-    <tr key={x.id}>
-      <td className="border font-medium px-4 py-2 text-sm">{x.key}</td>
-      <td className="border px-4 py-2 text-sm">{x.value}</td>
+  const ExtraItem = ({ id, key, value }) => (
+    <tr key={id}>
+      <td className="border font-medium px-4 py-2 text-sm">{key}</td>
+      <td className="border px-4 py-2 text-sm">{value}</td>
     </tr>
   );
 

@@ -3,11 +3,12 @@ module.exports = {
     './src/**/*.html',
     './src/**/*.js',
   ],
+  darkMode: false,
   theme: {
-    container: {
-      center: true,
-    },
+    extend: {},
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [],
-};
+}

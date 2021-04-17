@@ -1,6 +1,6 @@
 /* eslint-disable new-cap */
 import html2canvas from 'html2canvas';
-import * as jsPDF from 'jspdf';
+import { jsPDF } from "jspdf";
 
 const move = (array, element, delta) => {
   const index = array.findIndex(item => item.id === element.id);
@@ -109,48 +109,46 @@ const saveAsPdf = (pageRef, panZoomRef, quality, type) => {
   if(saveAsPdfTimer){
       return;
   }
-  return new Promise(resolve => {
-    panZoomRef.current.autoCenter(1);
-    panZoomRef.current.reset();
 
-    saveAsPdfTimer = setTimeout(() => {
-      html2canvas(pageRef.current, {
-        scale: 5,
-        useCORS: true,
-        allowTaint: true,
-      }).then(canvas => {
-        const image = canvas.toDataURL('image/jpeg', quality / 100);
-        const doc = new jsPDF({
-          orientation: 'portrait',
-          unit: 'px',
-          format: type === 'unconstrained' ? [canvas.width, canvas.height] : 'a4',
-        });
+  panZoomRef.current.autoCenter(1);
+  panZoomRef.current.reset();
 
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-
-        const widthRatio = pageWidth / canvas.width;
-        const heightRatio = pageHeight / canvas.height;
-        const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
-
-        const canvasWidth = canvas.width * ratio;
-        const canvasHeight = canvas.height * ratio;
-
-        let marginX = 0;
-        let marginY = 0;
-
-        if (type !== 'unconstrained') {
-          marginX = (pageWidth - canvasWidth) / 2;
-          marginY = (pageHeight - canvasHeight) / 2;
-        }
-
-        doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight, null, 'SLOW');
-        doc.save(`RxResume_${Date.now()}.pdf`);
-        saveAsPdfTimer = null;
-        resolve();
+  saveAsPdfTimer = setTimeout(() => {
+    html2canvas(pageRef.current, {
+      scale: 5,
+      useCORS: true,
+      allowTaint: true,
+    }).then(canvas => {
+      const image = canvas.toDataURL('image/jpeg', quality / 100);
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: type === 'unconstrained' ? [canvas.width, canvas.height] : 'a4',
       });
-    }, 250);
-  });
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+
+      const widthRatio = pageWidth / canvas.width;
+      const heightRatio = pageHeight / canvas.height;
+      const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+      const canvasWidth = canvas.width * ratio;
+      const canvasHeight = canvas.height * ratio;
+
+      let marginX = 0;
+      let marginY = 0;
+
+      if (type !== 'unconstrained') {
+        marginX = (pageWidth - canvasWidth) / 2;
+        marginY = (pageHeight - canvasHeight) / 2;
+      }
+
+      doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight, null, 'SLOW');
+      doc.save(`RxResume_${Date.now()}.pdf`);
+      saveAsPdfTimer = null;
+    });
+  }, 250);
 }
   
 let saveAsMultiPagePdfTimer = null;
@@ -158,45 +156,43 @@ const saveAsMultiPagePdf = (pageRef, panZoomRef, quality) => {
   if(saveAsMultiPagePdfTimer){
       return;
   }
-  return new Promise(resolve => {
-    panZoomRef.current.autoCenter(1);
-    panZoomRef.current.reset();
 
-    saveAsMultiPagePdfTimer = setTimeout(() => {
-      html2canvas(pageRef.current, {
-        scale: 5,
-        useCORS: true,
-        allowTaint: true,
-      }).then(canvas => {
-        const image = canvas.toDataURL('image/jpeg', quality / 100);
-        const doc = new jsPDF({
-          orientation: 'portrait',
-          unit: 'px',
-          format: 'a4',
-        });
+  panZoomRef.current.autoCenter(1);
+  panZoomRef.current.reset();
 
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const canvasWidth = doc.internal.pageSize.getWidth();
-        const canvasHeight = (canvas.height * canvasWidth) / canvas.width;
-        let marginTop = 0;
-        let heightLeft = canvasHeight;
+  saveAsMultiPagePdfTimer = setTimeout(() => {
+    html2canvas(pageRef.current, {
+      scale: 5,
+      useCORS: true,
+      allowTaint: true,
+    }).then(canvas => {
+      const image = canvas.toDataURL('image/jpeg', quality / 100);
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: 'a4',
+      });
 
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const canvasWidth = doc.internal.pageSize.getWidth();
+      const canvasHeight = (canvas.height * canvasWidth) / canvas.width;
+      let marginTop = 0;
+      let heightLeft = canvasHeight;
+
+      doc.addImage(image, 'JPEG', 0, marginTop, canvasWidth, canvasHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        marginTop = heightLeft - canvasHeight;
+        doc.addPage();
         doc.addImage(image, 'JPEG', 0, marginTop, canvasWidth, canvasHeight);
         heightLeft -= pageHeight;
+      }
 
-        while (heightLeft >= 0) {
-          marginTop = heightLeft - canvasHeight;
-          doc.addPage();
-          doc.addImage(image, 'JPEG', 0, marginTop, canvasWidth, canvasHeight);
-          heightLeft -= pageHeight;
-        }
-
-        doc.save(`RxResume_${Date.now()}.pdf`);
-        saveAsMultiPagePdfTimer = null;
-        resolve();
-      });
-    }, 250);
-  });
+      doc.save(`RxResume_${Date.now()}.pdf`);
+      saveAsMultiPagePdfTimer = null;
+    });
+  }, 250);
 }
 
 export {

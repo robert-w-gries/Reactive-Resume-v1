@@ -25,7 +25,7 @@ const ProfileTab = ({ data, onChange }) => {
         onChange={v => onChange('data.profile.photo', v)}
       />
 
-      <div className="grid grid-cols-2 col-gap-4">
+      <div className="grid grid-cols-2 gap-x-4">
         <TextField
           className="mb-6"
           label={t('profile.firstName.label')}

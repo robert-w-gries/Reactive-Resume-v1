@@ -1,8 +1,7 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 
-const MarkdownHelpText = ({ className }) => {
-  return (
+const MarkdownHelpText = ({ className }) => (
     <div className={className}>
       <p className="text-gray-800 text-xs">
         <Trans i18nKey="markdownHelpText">
@@ -20,6 +19,5 @@ const MarkdownHelpText = ({ className }) => {
       </p>
     </div>
   );
-};
 
 export default MarkdownHelpText;

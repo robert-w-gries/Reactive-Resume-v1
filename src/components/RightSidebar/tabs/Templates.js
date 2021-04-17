@@ -2,8 +2,7 @@ import React from 'react';
 
 import templates from '../../../templates';
 
-const TemplatesTab = ({ theme, onChange }) => {
-  return (
+const TemplatesTab = ({ theme, onChange }) => (
     <div className="grid grid-cols-2 gap-6">
       {templates.map(x => (
         <div key={x.key} className="text-center" onClick={() => onChange('theme.layout', x.key)}>
@@ -21,6 +20,5 @@ const TemplatesTab = ({ theme, onChange }) => {
       ))}
     </div>
   );
-};
 
 export default TemplatesTab;
