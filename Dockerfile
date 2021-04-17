@@ -29,8 +29,7 @@ FROM nginx:1.17.9-alpine
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
 ## copy custom nginx config
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 ## run nginx server
-CMD sed -i -e 's/ENV_PORT/'"$PORT"'/g' /etc/nginx/conf.d/nginx.conf && nginx -g 'daemon off;'
+CMD sed -i -e 's/ENV_PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
